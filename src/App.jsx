@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { createClient } from "pexels";
+import fondo from './util/fondo.json';
 import { random } from "./util/randomImg";
 import { WeatherView } from "./component/WeatherView";
 import Loading from "./component/Loading";
@@ -10,12 +10,19 @@ function App() {
   const [weather, setWeather] = useState();
   const [Location, setLocation] = useState();
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState();
-  const [img, setImg] = useState();
   const [permisos, setPermisos] = useState(false);
-  const [errors, setErrors] = useState(true);
+  const [errorsl, setErrorsl] = useState(true);
   const [messgae, setMessage] = useState(`Debe permitir el acceso a su ubicación para utilizar esta función. Por favor,
   active los permisos de geolocalización en la configuración de su navegador o dispositivo.`);
+  const [image, setImage] = useState(fondo[random(fondo)]);
+  const [background, setBackground] = useState({
+    backgroundImage: `url(${image})`,
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    transition: 'background-image 0.5s ease-in-out'
+  });
+
 
   useEffect(() => {
     const succes = ({ coords }) => {
@@ -32,7 +39,7 @@ function App() {
     };
 
     const errors = (error) => {
-      setErrors(false);
+      setErrorsl(false);
       if(permisos) return;
 
       if(error.code === error.PERMISSION_DENIED){
@@ -68,49 +75,39 @@ function App() {
           setLoading(true);
         }, 5000);
 
-        setErrors(true);
+        setErrorsl(true);
       })
       .catch((err) => {
-        setErrors(false);
+        setErrorsl(false);
       });
   }, [Location]);
 
-  useEffect(() => {
-    const client = createClient(
-      "563492ad6f917000010000014863f4965ca747b9ae69b25d59d6a8f3"
-    );
-    const query = "paisaje";
-    client.photos.search({ query }).then((photo) => setImage(photo.photos));
-  }, []);
+  useEffect(()=>{
+     setBackground(
+      {
+        backgroundImage: `url(${image})`,
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        transition: 'background-image 0.5s ease-in-out'
+      }
+     )
 
-  useEffect(() => {
-    if (!image) return;
-
-    const photo = image[random(image)];
-
-    setImg(photo);
-  }, [image]);
-
-  const background = {
-    backgroundImage: `url(${img?.src.original})`,
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-  };
+  }, [image])
 
  
 
   return (
     <div className="App" style={background}>
-      {errors ? (
+      {errorsl ? (
         <>
-          {loading ? <WeatherView data={weather} /> : <Loading />}
+          {loading ? <><WeatherView data={weather}  /> <Search setImage={setImage} setWeather={setWeather} /></> : <Loading />}
 
-          <Search setWeather={setWeather} />
+          
         </>
       ) : (
         <div className="conect__error">
-          <div>
+          <div className="animate__animated animate__flipInX">
            
             <img src="/img/sad.gif" alt="triste" />
 

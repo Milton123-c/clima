@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ddd3d3;
+    background-image: linear-gradient(to right top, #1d0537, #2c1b5e, #36328a, #354cb9, #1269eb);
 }
 
 .lds-roller {
@@ -29,7 +29,7 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #020eb9;
+    background: #fff;
     margin: -4px 0 0 -4px;
   }
   .lds-roller div:nth-child(1) {
@@ -94,14 +94,5 @@
     }
     100% {
       transform: rotate(360deg);
-    }
-  }
-
-  @media (min-width: 768px) {
-    .loading{
-        background: #03001e;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
     }
   }

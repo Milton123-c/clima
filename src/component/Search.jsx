@@ -1,7 +1,9 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import  {random} from '../util/randomImg';
+import fondo from '../util/fondo.json';
 
-export const Search = ({setWeather}) => {
+export const Search = ({setWeather, setImage}) => {
 
     const[go, setGo] = useState();
     const [error, setError] = useState(false)
@@ -27,11 +29,12 @@ export const Search = ({setWeather}) => {
 const handleSearch = (e) => {
   e.preventDefault();
   setGo(e.target.search.value);
+  setImage(fondo[random(fondo)]);
 }
 
 
   return (
-    <div className='form__content'>
+    <div className='form__content animate__animated animate__zoomInDown'>
 
         <form  className='form' onSubmit={handleSearch}>
             <input type="search" name="" placeholder='Search City name' id="search"  required/>
@@ -42,7 +45,7 @@ const handleSearch = (e) => {
         
         {
           error ?
-          <p  className='error__city'>
+          <p  className='error__city animate__animated animate__flipInY'>
             Sorry, the city does exist
           </p>
           

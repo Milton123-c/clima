@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export const WeatherView = ({ data }) => {
   const dt = data;
@@ -19,10 +19,9 @@ export const WeatherView = ({ data }) => {
     setCelsius(changeCelsius.toFixed(2));
   };
 
-  console.log(dt?.weather[0].icon)
-
+  
   return (
-    <section className="weather">
+    <section className="weather animate__animated animate__zoomInDown">
       <article>
         <h1>Weather App</h1>
 
