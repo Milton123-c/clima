@@ -46,7 +46,7 @@ const handleSearch = (e) => {
         {
           error ?
           <p  className='error__city animate__animated animate__flipInY'>
-            Sorry, the city does exist
+             Sorry, the city DOESN'T exist
           </p>
           
           :
