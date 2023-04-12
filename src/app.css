@@ -11,11 +11,25 @@
     background-image: linear-gradient(to right top, #1d0537, #2c1b5e, #36328a, #354cb9, #1269eb);
 }
 
+.loading__chick{
+ position: fixed;
+  background-color: rgba(172, 162, 162, 0.966);
+  width: 100vw;
+  height: 110vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+
 .lds-roller {
-    display: inline-block;
+    display: flex;
     position: relative;
     width: 80px;
-    height: 80px;
+    height: 262px;
+    justify-content: center;
+    align-items: center;
 
   }
   .lds-roller div {

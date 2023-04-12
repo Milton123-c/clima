@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import LoadingChick from "./LoadingChick";
 
-export const WeatherView = ({ data }) => {
+export const WeatherView = ({ data, cargar, setCargar }) => {
+
+
   const dt = data;
 
   const cel = dt?.main.temp - 273.15;
@@ -8,6 +11,7 @@ export const WeatherView = ({ data }) => {
   const [celsius, setCelsius] = useState(cel.toFixed(2));
 
   const [change, setChange] = useState(false);
+
 
   const handleChange = () => {
     setChange(!change);
@@ -20,8 +24,21 @@ export const WeatherView = ({ data }) => {
   };
 
   
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setCargar(true)
+    }, 2000)
+  },
+   [cargar])
+  
   return (
-    <section className="weather animate__animated animate__zoomInDown">
+    
+    <>
+    {
+      cargar ?
+       <>
+      <section className="weather animate__animated animate__zoomInDown">
       <article>
         <h1>Weather App</h1>
 
@@ -62,6 +79,18 @@ export const WeatherView = ({ data }) => {
         Change to
         {!change ? <span>°F</span> : <span>°C</span>}
       </button>
-    </section>
+      </section>
+       </>
+      :
+      <>
+      <div className="loading__chick">
+          
+          </div>
+       <LoadingChick/>
+      </>
+      
+    }
+    </>
+    
   );
 };

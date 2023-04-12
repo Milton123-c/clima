@@ -23,6 +23,7 @@ function App() {
     transition: 'background-image 0.5s ease-in-out'
   });
 
+  const [cargar, setCargar] = useState(true)
 
   useEffect(() => {
     const succes = ({ coords }) => {
@@ -101,7 +102,7 @@ function App() {
     <div className="App" style={background}>
       {errorsl ? (
         <>
-          {loading ? <><WeatherView data={weather}  /> <Search setImage={setImage} setWeather={setWeather} /></> : <Loading />}
+          {loading ? <> <WeatherView cargar={cargar} setCargar={setCargar} data={weather}  /> <Search setCargar={setCargar} setImage={setImage} setWeather={setWeather} /> </> : <Loading />}
 
           
         </>

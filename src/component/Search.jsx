@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import  {random} from '../util/randomImg';
 import fondo from '../util/fondo.json';
 
-export const Search = ({setWeather, setImage}) => {
+
+export const Search = ({setWeather, setImage, setCargar}) => {
 
     const[go, setGo] = useState();
     const [error, setError] = useState(false)
@@ -18,6 +19,7 @@ export const Search = ({setWeather, setImage}) => {
         .then(res => {
           setWeather(res.data);
           setError(false)
+          
         })
         .catch(err =>{ 
           setError(true);
@@ -30,7 +32,9 @@ const handleSearch = (e) => {
   e.preventDefault();
   setGo(e.target.search.value);
   setImage(fondo[random(fondo)]);
+  setCargar(false)
 }
+
 
 
   return (
