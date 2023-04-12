@@ -30,7 +30,7 @@ export const Search = ({setWeather, setImage, setCargar}) => {
 
 const handleSearch = (e) => {
   e.preventDefault();
-  setGo(e.target.search.value);
+  setGo(e.target.search.value.trim());
   setImage(fondo[random(fondo)]);
   setCargar(false)
 }
