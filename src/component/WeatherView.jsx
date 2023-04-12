@@ -28,7 +28,7 @@ export const WeatherView = ({ data, cargar, setCargar }) => {
   useEffect(()=>{
     setTimeout(()=>{
       setCargar(true)
-    }, 2000)
+    }, 3000)
   },
    [cargar])
   
